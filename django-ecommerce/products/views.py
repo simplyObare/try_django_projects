@@ -3,7 +3,7 @@ from .models import Product, Category
 
 
 # Create your views here.
-def product_list(request, category_slug):
+def product_list(request, category_slug=None):
     category = None
     products = Product.objects.filter(available=True)
     categories = Category.objects.all()
@@ -14,8 +14,12 @@ def product_list(request, category_slug):
 
     return render(
         request,
-        "products/product/products_list.html",
-        {"category": category, "products": products, "categories": categories},
+        "products/product_list.html",
+        {
+            "category": category,
+            "products": products,
+            "categories": categories,
+        },
     )
 
 
@@ -23,6 +27,6 @@ def product_detail(request, pk, slug):
     product = get_object_or_404(Product, pk=pk, slug=slug, available=True)
     return render(
         request,
-        "products/product/product_detail.html",
+        "products/product_detail.html",
         {"product": product},
     )
