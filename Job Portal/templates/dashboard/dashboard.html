@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<div>
+  {% if request.user.is_applicant %}
+  <div class="applicant-section">
+    <h2>Welcome Applicant</h2>
+    <p>Here you can manage your job applications and view recommended jobs.</p>
+  </div>
+  {% elif request.user.is_recruiter %}
+  <div class="recruiter-section">
+    <h2>Welcome Recruiter</h2>
+    <p>
+      Here you can post new job listings and manage your company's applicants.
+    </p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

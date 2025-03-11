@@ -1,0 +1,57 @@
+{% extends "users/base.html" %}
+
+<head>
+   {% block title %}Register Recruiter{% endblock %}
+</head>
+
+<div>
+  {% block content %}
+  <form method="post">
+    {% csrf_token %} {% load widget_tweaks %}
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        {%
+        if
+        form.email.value
+        %}
+        value="{{ form.email.value }}"
+        {%
+        endif
+        %}
+      />
+    </div>
+    <div class="form-group">
+      <label for="password1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password1"
+        name="password1"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password2"
+        name="password2"
+        placeholder="Confirm Password"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <hr />
+    <small
+      >Already have an account? <a href="{% url 'login' %}">Login</a></small
+    >
+  </form>
+  {% endblock %}
+</div>
